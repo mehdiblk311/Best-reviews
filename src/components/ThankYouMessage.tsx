@@ -48,19 +48,19 @@ export const ThankYouMessage: React.FC<ThankYouMessageProps> = ({
 
   return (
     <Card className="w-full max-w-md animate-bounce-in">
-      <CardContent className="pt-8 pb-8 text-center">
-        <div className="flex justify-center mb-4">
+      <CardContent className="pt-6 pb-6 sm:pt-8 sm:pb-8 text-center px-4 sm:px-6">
+        <div className="flex justify-center mb-3 sm:mb-4">
           {isPositive ? (
-            <Heart className="w-16 h-16 text-success fill-current animate-pulse-slow" />
+            <Heart className="w-12 h-12 sm:w-16 sm:h-16 text-success fill-current animate-pulse-slow" />
           ) : (
-            <CheckCircle className="w-16 h-16 text-primary animate-pulse-slow" />
+            <CheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-primary animate-pulse-slow" />
           )}
         </div>
-        <h2 className="text-2xl font-bold mb-4 text-foreground">
+        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
           {t.title}
         </h2>
         <p 
-          className="text-muted-foreground leading-relaxed"
+          className="text-sm sm:text-base text-muted-foreground leading-relaxed px-2"
           dir={language === 'ar' ? 'rtl' : 'ltr'}
         >
           {t.message}

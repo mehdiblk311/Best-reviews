@@ -82,32 +82,32 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
 
   return (
     <Card className="w-full max-w-2xl animate-slide-up">
-      <CardHeader className="text-center">
-        <div className="flex justify-center mb-2">
+      <CardHeader className="text-center pb-4 sm:pb-6">
+        <div className="flex justify-center mb-3 sm:mb-4">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
               className={cn(
-                "w-6 h-6 mx-1",
+                "w-5 h-5 sm:w-6 sm:h-6 mx-0.5 sm:mx-1",
                 i < rating ? "text-star-5 fill-current" : "text-muted-foreground"
               )}
             />
           ))}
         </div>
-        <CardTitle className="text-xl font-bold text-foreground">
+        <CardTitle className="text-lg sm:text-xl font-bold text-foreground px-2">
           {t.title}
         </CardTitle>
-        <p className="text-muted-foreground">
+        <p className="text-sm sm:text-base text-muted-foreground px-2">
           {t.subtitle}
         </p>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
         <div className="text-center">
           <Button
             onClick={handleGoogleReview}
             variant="gradient"
             size="lg"
-            className="gap-2 text-lg px-8 py-3"
+            className="gap-2 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 h-12 sm:h-14 touch-manipulation"
           >
             <ExternalLink className="w-5 h-5" />
             {t.reviewButton}
@@ -116,18 +116,18 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
 
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 text-center text-foreground">
+          <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-center text-foreground px-2">
             {t.suggestions}
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-2 sm:space-y-3">
             {t.comments.map((comment, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 p-4 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
+                className="flex items-start gap-2 sm:gap-3 p-3 sm:p-4 bg-muted rounded-lg hover:bg-muted/80 transition-colors"
                 dir={language === 'ar' ? 'rtl' : 'ltr'}
               >
                 <div className="flex-1">
-                  <p className="text-sm text-foreground leading-relaxed">
+                  <p className="text-xs sm:text-sm text-foreground leading-relaxed">
                     "{comment}"
                   </p>
                 </div>
@@ -136,18 +136,18 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
                   size="sm"
                   onClick={() => copyToClipboard(comment, index)}
                   className={cn(
-                    "gap-2 min-w-[100px] transition-all duration-200",
+                    "gap-1 sm:gap-2 min-w-[80px] sm:min-w-[100px] transition-all duration-200 text-xs sm:text-sm h-8 sm:h-9 touch-manipulation shrink-0",
                     copiedIndex === index && "bg-success text-white border-success"
                   )}
                 >
                   {copiedIndex === index ? (
                     <>
-                      <CheckCircle className="w-4 h-4" />
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4" />
                       {t.copied}
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-3 h-3 sm:w-4 sm:h-4" />
                       {t.copyButton}
                     </>
                   )}

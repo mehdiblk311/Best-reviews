@@ -83,10 +83,10 @@ export const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <div className="relative flex flex-col items-center gap-4">
+    <div className="relative flex flex-col items-center gap-3 sm:gap-4">
       {showTooltip && (
-        <div className="absolute -top-12 px-3 py-2 bg-card rounded-lg shadow-lg border animate-fade-in">
-          <p className="text-sm font-medium text-foreground">
+        <div className="absolute -top-10 sm:-top-12 px-2 sm:px-3 py-1.5 sm:py-2 bg-card rounded-lg shadow-lg border animate-fade-in z-10">
+          <p className="text-xs sm:text-sm font-medium text-foreground whitespace-nowrap">
             {tooltips[language][tooltipIndex]}
           </p>
           <div className="absolute top-full left-1/2 transform -translate-x-1/2">
@@ -95,13 +95,13 @@ export const StarRating: React.FC<StarRatingProps> = ({
         </div>
       )}
       
-      <div className="flex gap-2">
+      <div className="flex gap-1 sm:gap-2">
         {[1, 2, 3, 4, 5].map((index) => (
           <button
             key={index}
             id={`star-${index}`}
             className={cn(
-              "relative p-2 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring",
+              "relative p-1.5 sm:p-2 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-ring touch-manipulation",
               displayRating >= index ? "animate-star-glow" : ""
             )}
             onMouseEnter={() => handleMouseEnter(index)}
@@ -111,7 +111,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
           >
             <Star
               className={cn(
-                "w-12 h-12 transition-all duration-300",
+                "w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300",
                 displayRating >= index
                   ? `${getStarColor(displayRating)} fill-current`
                   : "text-muted-foreground hover:text-secondary"
@@ -123,7 +123,7 @@ export const StarRating: React.FC<StarRatingProps> = ({
       
       {rating > 0 && (
         <p className={cn(
-          "text-lg font-semibold animate-fade-in",
+          "text-base sm:text-lg font-semibold animate-fade-in text-center px-2",
           getStarColor(rating)
         )}>
           {tooltips[language][rating - 1]}

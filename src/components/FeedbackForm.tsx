@@ -55,24 +55,24 @@ export const FeedbackForm: React.FC<FeedbackFormProps> = ({
 
   return (
     <Card className="w-full max-w-md animate-slide-up">
-      <CardHeader>
-        <CardTitle className="text-center text-lg font-semibold text-foreground">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-center text-base sm:text-lg font-semibold text-foreground">
           {t.title}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-0">
         <form onSubmit={handleSubmit} className="space-y-4">
           <Textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             placeholder={t.placeholder}
-            className="min-h-[120px] resize-none"
+            className="min-h-[100px] sm:min-h-[120px] resize-none text-sm sm:text-base"
             dir={language === 'ar' ? 'rtl' : 'ltr'}
             required
           />
           <Button
             type="submit"
-            className="w-full gap-2"
+            className="w-full gap-2 h-11 sm:h-12 text-sm sm:text-base touch-manipulation"
             disabled={!comment.trim() || isSubmitting}
           >
             {isSubmitting ? (
