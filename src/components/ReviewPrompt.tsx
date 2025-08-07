@@ -64,7 +64,6 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
   googleReviewUrl
 }) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [showEmbed, setShowEmbed] = useState(false);
   const t = translations[language];
 
   const copyToClipboard = async (text: string, index: number) => {
@@ -78,7 +77,7 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
   };
 
   const handleGoogleReview = () => {
-    setShowEmbed(true);
+    window.open(googleReviewUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -115,18 +114,6 @@ export const ReviewPrompt: React.FC<ReviewPromptProps> = ({
           </Button>
         </div>
 
-        {showEmbed && (
-          <div className="w-full animate-fade-in">
-            <iframe
-              src={googleReviewUrl}
-              width="100%"
-              height="600"
-              frameBorder="0"
-              className="rounded-lg border"
-              title="Google Review"
-            />
-          </div>
-        )}
 
         <div>
           <h3 className="text-lg font-semibold mb-4 text-center text-foreground">
