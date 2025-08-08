@@ -83,12 +83,9 @@ export const FeedbackApp: React.FC = () => {
     if (newRating <= 3) {
       setAppState('feedback');
     } else {
+      // For 4+ stars: immediately redirect to Google Maps AND show thank you page
       setAppState('thankyou');
-      // Auto-redirect to Google Maps after 3 seconds
-      const timer = setTimeout(() => {
-        window.open(GOOGLE_REVIEW_URL, '_blank');
-      }, 3000);
-      setAutoRedirectTimer(timer);
+      window.open(GOOGLE_REVIEW_URL, '_blank');
     }
   };
 
