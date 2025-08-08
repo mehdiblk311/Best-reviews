@@ -77,8 +77,7 @@ export const FeedbackApp: React.FC = () => {
     if (newRating <= 3) {
       setAppState('feedback');
     } else {
-      // Redirect directly to Google Maps for 4+ stars
-      window.open(GOOGLE_REVIEW_URL, '_blank');
+      setAppState('thankyou'); // Show thank you page first
     }
   };
 
@@ -259,6 +258,7 @@ export const FeedbackApp: React.FC = () => {
                   <ThankYouMessage
                     language={language}
                     isPositive={rating >= 4}
+                    onGoogleReview={rating >= 4 ? () => window.open(GOOGLE_REVIEW_URL, '_blank') : undefined}
                   />
                   <button
                     onClick={handleReset}
