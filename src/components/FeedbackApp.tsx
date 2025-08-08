@@ -34,6 +34,7 @@ export const FeedbackApp: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [rating, setRating] = useState(0);
   const [appState, setAppState] = useState<AppState>('rating');
+  const [autoRedirectTimer, setAutoRedirectTimer] = useState<NodeJS.Timeout | null>(null);
 
   // Load saved preferences
   useEffect(() => {
@@ -73,11 +74,21 @@ export const FeedbackApp: React.FC = () => {
   const handleRatingChange = (newRating: number) => {
     setRating(newRating);
     
+    // Clear any existing timer
+    if (autoRedirectTimer) {
+      clearTimeout(autoRedirectTimer);
+    }
+    
     // Determine next state based on rating
     if (newRating <= 3) {
       setAppState('feedback');
     } else {
-      setAppState('thankyou'); // Show thank you page first
+      setAppState('thankyou');
+      // Auto-redirect to Google Maps after 3 seconds
+      const timer = setTimeout(() => {
+        window.open(GOOGLE_REVIEW_URL, '_blank');
+      }, 3000);
+      setAutoRedirectTimer(timer);
     }
   };
 
@@ -124,6 +135,11 @@ export const FeedbackApp: React.FC = () => {
   };
 
   const handleReset = () => {
+    // Clear any existing timer
+    if (autoRedirectTimer) {
+      clearTimeout(autoRedirectTimer);
+      setAutoRedirectTimer(null);
+    }
     setRating(0);
     setAppState('rating');
   };
@@ -258,7 +274,7 @@ export const FeedbackApp: React.FC = () => {
                   <ThankYouMessage
                     language={language}
                     isPositive={rating >= 4}
-                    onGoogleReview={rating >= 4 ? () => window.open(GOOGLE_REVIEW_URL, '_blank') : undefined}
+                    showRedirectMessage={rating >= 4}
                   />
                   <button
                     onClick={handleReset}

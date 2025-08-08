@@ -6,38 +6,44 @@ import { CheckCircle, Heart, Star } from 'lucide-react';
 interface ThankYouMessageProps {
   language: 'en' | 'fr' | 'ar';
   isPositive: boolean;
-  onGoogleReview?: () => void;
+  showRedirectMessage?: boolean;
 }
 
 const translations = {
   en: {
     positive: {
       title: "Thank you so much!",
-      message: "Your positive feedback means the world to us. We're thrilled that you had a great experience!"
+      message: "Your positive feedback means the world to us. We're thrilled that you had a great experience!",
+      redirectMessage: "Redirecting you to Google Reviews in a moment..."
     },
     negative: {
       title: "Thank you for your feedback",
-      message: "We're truly sorry your experience wasn't perfect, and we'll work to make it better. Your input helps us improve."
+      message: "We're truly sorry your experience wasn't perfect, and we'll work to make it better. Your input helps us improve.",
+      redirectMessage: undefined
     }
   },
   fr: {
     positive: {
       title: "Merci beaucoup!",
-      message: "Vos commentaires positifs nous font énormément plaisir. Nous sommes ravis que vous ayez eu une excellente expérience!"
+      message: "Vos commentaires positifs nous font énormément plaisir. Nous sommes ravis que vous ayez eu une excellente expérience!",
+      redirectMessage: "Redirection vers Google Avis dans un instant..."
     },
     negative: {
       title: "Merci pour vos commentaires",
-      message: "Nous sommes vraiment désolés que votre expérience n'ait pas été parfaite, et nous allons travailler pour l'améliorer. Vos commentaires nous aident à nous améliorer."
+      message: "Nous sommes vraiment désolés que votre expérience n'ait pas été parfaite, et nous allons travailler pour l'améliorer. Vos commentaires nous aident à nous améliorer.",
+      redirectMessage: undefined
     }
   },
   ar: {
     positive: {
       title: "شكراً جزيلاً لك!",
-      message: "تعليقاتك الإيجابية تعني لنا الكثير. نحن سعداء جداً لأنك حصلت على تجربة رائعة!"
+      message: "تعليقاتك الإيجابية تعني لنا الكثير. نحن سعداء جداً لأنك حصلت على تجربة رائعة!",
+      redirectMessage: "سيتم تحويلك إلى تقييمات جوجل خلال لحظات..."
     },
     negative: {
       title: "شكراً لك على تعليقاتك",
-      message: "نحن آسفون حقاً لأن تجربتك لم تكن مثالية، وسنعمل على تحسينها. ملاحظاتك تساعدنا على التحسن."
+      message: "نحن آسفون حقاً لأن تجربتك لم تكن مثالية، وسنعمل على تحسينها. ملاحظاتك تساعدنا على التحسن.",
+      redirectMessage: undefined
     }
   }
 };
@@ -45,7 +51,7 @@ const translations = {
 export const ThankYouMessage: React.FC<ThankYouMessageProps> = ({ 
   language, 
   isPositive,
-  onGoogleReview 
+  showRedirectMessage = false 
 }) => {
   const t = translations[language][isPositive ? 'positive' : 'negative'];
 
@@ -64,26 +70,24 @@ export const ThankYouMessage: React.FC<ThankYouMessageProps> = ({
             {t.title}
           </h2>
           <p 
-            className="text-sm sm:text-base text-muted-foreground leading-relaxed px-2"
+            className="text-sm sm:text-base text-muted-foreground leading-relaxed px-2 mb-4"
             dir={language === 'ar' ? 'rtl' : 'ltr'}
           >
             {t.message}
           </p>
+          
+          {showRedirectMessage && isPositive && t.redirectMessage && (
+            <div className="flex items-center justify-center space-x-2 text-primary animate-pulse">
+              <div className="w-2 h-2 bg-primary rounded-full animate-bounce"></div>
+              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+              <p className="text-sm ml-2" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                {t.redirectMessage}
+              </p>
+            </div>
+          )}
         </CardContent>
       </Card>
-      
-      {isPositive && onGoogleReview && (
-        <Button
-          onClick={onGoogleReview}
-          className="w-full max-w-md bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-105 shadow-lg"
-          size="lg"
-        >
-          <Star className="w-5 h-5 mr-2" />
-          {language === 'en' ? 'Leave a Google Review' : 
-           language === 'fr' ? 'Laisser un avis Google' : 
-           'ترك تقييم على جوجل'}
-        </Button>
-      )}
     </div>
   );
 };
