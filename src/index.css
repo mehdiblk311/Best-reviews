@@ -8,14 +8,14 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Restaurant-friendly warm palette */
-    --background: 50 50% 98%;  /* Cream */
+    /* Restaurant-friendly warm palette - softer cream/beige */
+    --background: 48 40% 94%;  /* Softer cream */
     --foreground: 210 11% 15%; /* Charcoal */
 
-    --card: 50 50% 98%;
+    --card: 47 35% 92%;        /* Light beige */
     --card-foreground: 210 11% 15%;
 
-    --popover: 50 50% 98%;
+    --popover: 47 35% 92%;
     --popover-foreground: 210 11% 15%;
 
     --primary: 183 44% 49%;     /* Teal #37AFB6 */
@@ -24,10 +24,10 @@ All colors MUST be HSL.
     --secondary: 46 100% 48%;   /* Gold #F7C600 */
     --secondary-foreground: 210 11% 15%;
 
-    --muted: 183 65% 91%;       /* Mint #D2F1F2 */
+    --muted: 45 25% 88%;        /* Warm beige */
     --muted-foreground: 210 11% 47%;
 
-    --accent: 183 65% 91%;      /* Mint */
+    --accent: 45 25% 88%;       /* Warm beige */
     --accent-foreground: 210 11% 15%;
 
     --destructive: 0 80% 59%;   /* Red #E53E3E */
@@ -43,8 +43,8 @@ All colors MUST be HSL.
     --star-4: 142 51% 60%;      /* Light Green - Good */
     --star-5: 142 69% 48%;      /* Deep Green - Amazing */
 
-    --border: 183 20% 85%;
-    --input: 183 20% 90%;
+    --border: 44 20% 82%;       /* Warm border */
+    --input: 44 20% 87%;        /* Warm input background */
     --ring: 183 44% 49%;
 
     --radius: 0.75rem;

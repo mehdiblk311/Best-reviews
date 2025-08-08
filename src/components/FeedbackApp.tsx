@@ -30,7 +30,7 @@ const translations = {
 };
 
 export const FeedbackApp: React.FC = () => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>('fr');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [rating, setRating] = useState(0);
   const [appState, setAppState] = useState<AppState>('rating');
@@ -77,7 +77,8 @@ export const FeedbackApp: React.FC = () => {
     if (newRating <= 3) {
       setAppState('feedback');
     } else {
-      setAppState('review');
+      // Redirect directly to Google Maps for 4+ stars
+      window.open(GOOGLE_REVIEW_URL, '_blank');
     }
   };
 
@@ -160,8 +161,8 @@ export const FeedbackApp: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-4 sm:px-6 py-4 sm:py-8">
-        <div className="w-full max-w-4xl">
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-3 sm:px-4 py-4 sm:py-6">
+        <div className="w-full max-w-6xl">
           {appState === 'rating' && (
             <div className="relative">
               {/* Decorative background elements */}
@@ -169,7 +170,7 @@ export const FeedbackApp: React.FC = () => {
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 bg-secondary/10 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-32 sm:h-32 bg-primary/10 rounded-full blur-2xl"></div>
               
-              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 shadow-xl">
+              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-8 sm:p-12 md:p-16 lg:p-20 shadow-xl">
                 <div className="text-center space-y-6 sm:space-y-8 animate-fade-in">
                   <div className="space-y-3 sm:space-y-4">
                     <div className="w-12 h-0.5 sm:w-16 sm:h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
@@ -203,7 +204,7 @@ export const FeedbackApp: React.FC = () => {
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 bg-warning/10 rounded-full blur-2xl"></div>
               <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-28 sm:h-28 bg-destructive/10 rounded-full blur-2xl"></div>
               
-              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 shadow-xl">
+              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-8 sm:p-12 md:p-16 lg:p-20 shadow-xl">
                 <div className="flex flex-col items-center space-y-4 sm:space-y-6">
                   <button
                     onClick={handleReset}
@@ -253,7 +254,7 @@ export const FeedbackApp: React.FC = () => {
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 bg-secondary/10 rounded-full blur-2xl animate-pulse-slow"></div>
               <div className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-20 h-20 sm:w-28 sm:h-28 bg-primary/10 rounded-full blur-2xl animate-pulse-slow"></div>
               
-              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-6 sm:p-8 md:p-12 shadow-xl">
+              <div className="relative bg-card/80 backdrop-blur-sm rounded-2xl sm:rounded-3xl border border-border/50 p-8 sm:p-12 md:p-16 lg:p-20 shadow-xl">
                 <div className="flex flex-col items-center space-y-4 sm:space-y-6">
                   <ThankYouMessage
                     language={language}
