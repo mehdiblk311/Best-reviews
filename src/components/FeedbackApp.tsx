@@ -12,7 +12,9 @@ type Language = 'en' | 'fr' | 'ar';
 type AppState = 'rating' | 'feedback' | 'review' | 'thankyou';
 
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdb3lxEa2QdG5ve13vM3uij-utYWdUu8gi50PxId1ite-twjg/formResponse';
-const GOOGLE_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJ8Y_Ze2xtpw0RzNsj4JY_suc';
+const GOOGLE_REVIEW_URL = 'https://search.google.com/local/writereview?placeid=ChIJM-BFcgBtpw0RLcSh-mIJnQc';
+
+  
 
 const translations = {
   en: {
